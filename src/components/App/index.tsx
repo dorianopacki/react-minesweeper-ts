@@ -26,6 +26,7 @@ const App: React.FC = () => {
             </div>
          <div className="Body">{renderCells()}</div>
         </div>
+
     )
 };
 
