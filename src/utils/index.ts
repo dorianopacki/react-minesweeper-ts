@@ -1,4 +1,5 @@
-import { compileFunction } from "vm";
+// import { compileFunction } from "vm"
+import React from 'react';
 import {MAX_COLS, MAX_ROWS, NO_OF_BOMBS} from "../constans";
 import {Cell, CellValue, CellState} from "../types";
 
@@ -102,3 +103,7 @@ export const generateCells = (): Cell[][] => {
 
     return cells;
 };
+
+// export const handleKeyDown = () => {
+
+// }

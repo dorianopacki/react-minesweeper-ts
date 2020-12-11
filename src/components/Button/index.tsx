@@ -8,30 +8,37 @@ interface ButtonProps {
     col: number;
     state: CellState;
     value: CellValue;
+    onClick(rowParam: number, colParam: number): (...args: any[]) => void;
+    onContext(rowParam: number, colParam: number): (...args: any[]) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({row, col, state, value}) => {
+const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, value}) => {
 
     const renderContent = (): React.ReactNode => {
-        if(state === CellState.visible ) {
-            if(value === CellValue.bomb) {
-                return  <span role="img" aria-label = "bomb">💣</span>
-            }else if(value === CellValue.none) {
-                return null;
-            }
-
-
-        return value;
-        }else if(state === CellState.flaged) {
-            if(value === CellValue.bomb) {
-                return  <span role="img" aria-label = "flag">🚩</span>
-            }
-        }
-
+        if (state === CellState.visible) {
+          if (value === CellValue.bomb) {
+            return (
+              <span role="img" aria-label="bomb">
+                💣
+              </span>
+            );
+          } else if (value === CellValue.none) {
+            return null;
+          }
+    
+          return value;
+        } else if (state === CellState.flaged) {
+          return (
+            <span role="img" aria-label="flag">
+              🚩
+            </span>
+          );
+        }  
+    
         return null;
-    }
+      };
 
-    return <div className={`Button ${state === CellState.visible ? "visible" : ""} value-${value}`}>{renderContent()}</div>
+    return <div className={`Button ${state === CellState.visible ? "visible" : ""} value-${value}`} onClick= {onClick(row, col)} onContextMenu = {onContext(row,col)}>{renderContent()}</div>
 };
 
 
